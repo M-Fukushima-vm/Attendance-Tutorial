@@ -7,11 +7,15 @@ end
 
 
 gem 'rails', '~> 5.1.6'
-gem 'sqlite3'
+# [gem 'bootstrap-sass']を追加
+gem 'bootstrap-sass'
+# gem 'sqlite3'
 gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
+# [gem 'jquery-rails']を追加
+gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 
@@ -28,4 +32,6 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
+# Windows環境ではtzinfo-dataというgemを含める必要があります
+# Mac環境でもこのままでOKです
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
