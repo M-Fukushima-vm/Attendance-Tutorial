@@ -7,6 +7,8 @@ end
 
 
 gem 'rails', '~> 5.1.6'
+# (has_secure_passwordを使ってパスワードをハッシュ化するために)bcryptを追加
+gem 'bcrypt'
 # [gem 'bootstrap-sass']を追加
 gem 'bootstrap-sass'
 # gem 'sqlite3'
