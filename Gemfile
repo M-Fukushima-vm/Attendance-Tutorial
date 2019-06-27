@@ -9,8 +9,11 @@ end
 gem 'rails', '~> 5.1.6'
 # (has_secure_passwordを使ってパスワードをハッシュ化するために)bcryptを追加
 gem 'bcrypt'
+gem 'faker'
 # [gem 'bootstrap-sass']を追加
 gem 'bootstrap-sass'
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
 # gem 'sqlite3'
 gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
