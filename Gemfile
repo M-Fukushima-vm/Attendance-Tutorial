@@ -7,6 +7,7 @@ end
 
 
 gem 'rails', '~> 5.1.6'
+gem 'rails-i18n'
 # (has_secure_passwordを使ってパスワードをハッシュ化するために)bcryptを追加
 gem 'bcrypt'
 gem 'faker'
