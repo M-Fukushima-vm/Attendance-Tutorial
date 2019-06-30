@@ -1,5 +1,7 @@
 class User < ApplicationRecord
-    
+  
+  has_many :attendances, dependent: :destroy
+  
   attr_accessor :remember_token
   before_save { self.email = email.downcase }
     
@@ -18,7 +20,7 @@ class User < ApplicationRecord
   def User.digest(string)
     cost = 
       if ActiveModel::SecurePassword.min_cost
-        BCrypt::Tngine::MIN_COST
+        BCrypt::Engine::MIN_COST
       else
         BCrypt::Engine.cost
       end
@@ -36,7 +38,7 @@ class User < ApplicationRecord
 
   def authenticated?(remember_token)
     return false if remember_digest.nil?
-    BCrypt::Passwor.new(remember_digest).is_password?(remember_token)
+    BCrypt::Password.new(remember_digest).is_password?(remember_token)
   end
 
   def forget

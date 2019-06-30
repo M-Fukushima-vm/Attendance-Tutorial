@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_action :logged_in_user, only: [:index, :edit, :update, :destroy, :edit_basic_info, :update_basic_info]
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: [:destroy, :edit_basic_info, :update_basic_info]
+  before_action :set_one_month, only: :show
 
   def index
     @users = User.paginate(page: params[:page])
@@ -10,6 +11,9 @@ class UsersController < ApplicationController
   
   def show
     # @user = User.find(params[:id])
+    # @first_day = Date.current.beginning_of_month
+    # @last_day = @first_day.end_of_month
+    @worked_sum = @attendances.where.not(started_at: nil).count
   end
   
   def new
@@ -38,12 +42,16 @@ class UsersController < ApplicationController
     #   redirect_to @user
     # else
     #   render :edit
-    if @user.update_attributes(basic_info_params)
-      
+    # if @user.update_attributes(basic_info_params)
+    # else
+    # end
+    # redirect_to users_url
+    if @user.update_attributes(user_params)
+      flash[:success] = "ユーザー情報を更新しました。"
+      redirect_to @user
     else
-      
+      render :edit
     end
-    redirect_to users_url
   end
   
   def destroy
@@ -57,7 +65,7 @@ class UsersController < ApplicationController
 
   def update_basic_info
     if @user.update_attributes(basic_info_params)
-      flash[:success] = "#{@user.name}の基本情報を更新しました。<br>"
+      flash[:success] = "#{@user.name}の基本情報を更新しました。"
     else
       flash[:danger] = "#{@user.name}の更新は失敗しました。<br>" + @user.errors.full_messages.join("<br>")
     end
